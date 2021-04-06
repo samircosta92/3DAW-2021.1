@@ -93,13 +93,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     }
     else {
         if ($num1Valido == 0 and $num2Valido == 1) {
-            echo "Digite o primeiro valor corretamente!";
+            echo "<h2>Digite o primeiro valor corretamente!</h2>";
         }
         if ($num2Valido == 0 and $num1Valido == 1) {
-            echo "Digite o segundo valor corretamente!";
+            echo "<h2>Digite o segundo valor corretamente!</h2>";
         }
         if ($num1Valido == 0 and $num2Valido == 0) {
-            echo "Digite os valores corretamente!";
+            echo "<h2>Digite os valores corretamente!</h2>";
         }
 
     }
