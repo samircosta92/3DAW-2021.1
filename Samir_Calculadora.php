@@ -35,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     </style>
 </head>
 <body>
-<form action="Samir_Calculadora_V2.0.php" method="post">
+<form action="Samir_Calculadora.php" method="post">
     <fieldset name="calculadora">
         <legend>Calculadora:</legend><br>
         Primeiro valor:<input type="text" name="num1"><br><br>
