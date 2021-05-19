@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Teste Ajax e Json</title>
+    <script>
+        function recebeJson(str) {
+            console.log(str)
+            if (str.length > 0) {
+                var xmlhttp = new XMLHttpRequest();
+                xmlhttp.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        var result = JSON.parse(this.responseText);
+                        console.log(this.responseText);
+                        console.log(result);
+                        var cidade = result.cidades[0];
+
+                        console.log(cidade);
+
+                        for (cidades in result.cidades) {
+                            option = new Option(result.cidades[cidades], cidades);
+                            cidadesselect.options[cidadesselect.options.length] = option;
+                        }
+                    }
+                }
+                console.log(str.length)
+                xmlhttp.open("GET", "http://localhost/3daw/ex22AjaxJSON.php?estado=" + str, true);
+                xmlhttp.send();
+                console.log(str);
+            }
+        }
+
+    </script>
+</head>
+<body>
+<h3> Teste ajax e json</h3>
+<form action="">
+    Diga seu estado:<input type="text" id="uf" name="uf" onchange="recebeJson(this.value)">
+    <br><br>
+    <select id="cidadesselect">
+
+    </select>
+    <br>
+
+</form>
+</body>
+</html>
