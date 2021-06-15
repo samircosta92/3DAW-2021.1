@@ -1,47 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Teste Ajax e Json</title>
-    <script>
-        function recebeJson(str) {
-            console.log(str)
-            if (str.length > 0) {
-                var xmlhttp = new XMLHttpRequest();
-                xmlhttp.onreadystatechange = function () {
-                    if (this.readyState == 4 && this.status == 200) {
-                        var result = JSON.parse(this.responseText);
-                        console.log(this.responseText);
-                        console.log(result);
-                        var cidade = result.cidades[0];
+  <meta charset="UTF-8">
+  <title>Teste Ajax</title>
+  <script>
+    function mostraInfo(strUF) {
+      console.log(strUF);
+      if (strUF.length > 0) {
 
-                        console.log(cidade);
+        let xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+          console.log(this.readyState);
+          if (this.readyState == 4 && this.status == 200) {
+            let result = JSON.parse(this.responseText);
+            console.log(this.responseText);
 
-                        for (cidades in result.cidades) {
-                            option = new Option(result.cidades[cidades], cidades);
-                            cidadesselect.options[cidadesselect.options.length] = option;
-                        }
-                    }
-                }
-                console.log(str.length)
-                xmlhttp.open("GET", "http://localhost/3daw/ex22AjaxJSON.php?estado=" + str, true);
-                xmlhttp.send();
-                console.log(str);
+            document.getElementById("cid").innerHTML = ""
+            let cities = document.getElementById("cid");
+
+            for (i = 0; i < result.length; i++) {
+              let city = new Option(result[i], result[i]);
+              cities.options.add(city);
             }
-        }
+          }
 
-    </script>
+
+        }
+        console.log(strUF.length);
+        xmlhttp.open("GET", "http://localhost/3daw/ex22AjaxJSON.php?estado=" + strUF, true);
+        xmlhttp.send();
+        console.log(strUF);
+      } else {
+        document.getElementById("cid").innerHTML = ""
+      }
+    }
+
+  </script>
 </head>
 <body>
-<h3> Teste ajax e json</h3>
-<form action="">
-    Diga seu estado:<input type="text" id="uf" name="uf" onchange="recebeJson(this.value)">
+<h3>Populando o campo Select com as Cidades</h3>
+  <form action="">
+    Escolha seu estado:
+    <select name="estados" id="uf" onchange="mostraInfo(this.value)">
+      <option value=""></option>
+      <option value="AC">Acre</option>
+      <option value="AL">Alagoas</option>
+      <option value="AP">Amapá</option>
+      <option value="AM">Amazonas</option>
+      <option value="BA">Bahia</option>
+      <option value="CE">Ceará</option>
+      <option value="DF">Distrito Federal</option>
+      <option value="ES">Espírito Santo</option>
+      <option value="GO">Goiás</option>
+      <option value="MA">Maranhão</option>
+      <option value="MT">Mato Grosso</option>
+      <option value="MS">Mato Grosso do Sul</option>
+      <option value="MG">Minas Gerais</option>
+      <option value="PA">Pará</option>
+      <option value="PB">Paraíba</option>
+      <option value="PR">Paraná</option>
+      <option value="PE">Pernambuco</option>
+      <option value="PI">Piauí</option>
+      <option value="RJ">Rio de Janeiro</option>
+      <option value="RN">Rio Grande do Norte</option>
+      <option value="RS">Rio Grande do Sul</option>
+      <option value="RO">Rondônia</option>
+      <option value="RR">Roraima</option>
+      <option value="SC">Santa Catarina</option>
+      <option value="SP">São Paulo</option>
+      <option value="SE">Sergipe</option>
+      <option value="TO">Tocantins</option>
+    </select>
+
     <br><br>
-    <select id="cidadesselect">
+    <select id="cid">
 
     </select>
-    <br>
-
-</form>
+  </form>
 </body>
 </html>
